@@ -73,7 +73,7 @@ If you'd like me to add a new function/feature, feel free to do so by opening an
 
 ## Built by and Inspired from
 
-[![Debojyoti Chatterjee](https://s.gravatar.com/avatar/59471df396f2739074bb8f09dbba8763?s=80)](https://github.com/debojyotichatterjee9)  | [![Wes Bos](https://avatars3.githubusercontent.com/u/176013?s=400&v=4)](https://github.com/wesbos)
+[![Debojyoti Chatterjee](https://avatars3.githubusercontent.com/u/30823218?s=100)](https://github.com/debojyotichatterjee9)  | [![Wes Bos](https://avatars3.githubusercontent.com/u/176013?s=100&v=4)](https://github.com/wesbos)
 ---|---
 [Debojyoti Chatterjee](https://github.com/debojyotichatterjee9) |[Wes Bos](https://github.com/wesbos)
 
