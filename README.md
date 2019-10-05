@@ -1,4 +1,4 @@
-# ![reactApp](https://pixabay.com/images/id-3080102/)
+# ![reactApp](https://cdn.pixabay.com/photo/2019/02/21/17/50/under-construction-4011849_960_720.png)
 # React Application
 <table>
 <tr>
@@ -71,11 +71,12 @@ If you'd like me to add a new function/feature, feel free to do so by opening an
 - Need to add points here. (suggestions are most welcome).
 - Need to add points here.
 
-## Built by and Inspired from
+## Acknowledgments
 
-[![Debojyoti Chatterjee](https://avatars3.githubusercontent.com/u/30823218?s=100)](https://github.com/debojyotichatterjee9)  | [![Wes Bos](https://avatars3.githubusercontent.com/u/176013?s=100&v=4)](https://github.com/wesbos)
----|---
-[Debojyoti Chatterjee](https://github.com/debojyotichatterjee9) |[Wes Bos](https://github.com/wesbos)
+|Built By|Inspired from|
+|:-------------:|:-------------:|
+[![Debojyoti Chatterjee](https://avatars3.githubusercontent.com/u/30823218?s=100)](https://github.com/debojyotichatterjee9)|[![Wes Bos](https://avatars3.githubusercontent.com/u/176013?s=100&v=4)](https://github.com/wesbos)
+[Debojyoti Chatterjee](https://github.com/debojyotichatterjee9)|[Wes Bos](https://github.com/wesbos)
 
 ## [License](https://github.com/debojyotichatterjee9/reactApp/blob/master/LICENSE)
 
