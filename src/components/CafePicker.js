@@ -1,5 +1,5 @@
 import React from "react";
-
+import { getCafeName } from "../helpers";
 class CafePicker extends React.Component {
 
     render() {
@@ -16,7 +16,7 @@ class CafePicker extends React.Component {
             <>
             <form action="" className="cafe-selector">
                 <h2>Please Enter a Cafe name</h2>
-                <input type="text" required placeholder="Cafe Name"/>
+                <input type="text" required placeholder="Cafe Name" defaultValue={getCafeName()}/>
                 <button type="submit">Visit Cafe ▶</button>
             </form>
             </>
