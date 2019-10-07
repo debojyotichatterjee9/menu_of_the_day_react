@@ -323,7 +323,7 @@ header.top h3:after {
   top: auto;
   bottom: 7px;
 }
-.catch-of-the-day {
+.menu-of-the-day {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -336,7 +336,7 @@ header.top h3:after {
   -webkit-transform-style: preserve-3d;
           transform-style: preserve-3d;
 }
-.catch-of-the-day > * {
+.menu-of-the-day > * {
   -webkit-box-flex: 1;
       -ms-flex: 1 4 auto;
           flex: 1 4 auto;
@@ -350,7 +350,7 @@ header.top h3:after {
           box-shadow: 0 5px 5px rgba(0,0,0,0.1);
   overflow: scroll;
 }
-.catch-of-the-day > *:first-child {
+.menu-of-the-day > *:first-child {
   -ms-flex-negative: 1;
       flex-shrink: 1;
   -ms-flex-preferred-size: 50%;
@@ -358,14 +358,14 @@ header.top h3:after {
   -webkit-transform: translateX(50%) rotateY(6deg) translateX(-50%);
           transform: translateX(50%) rotateY(6deg) translateX(-50%);
 }
-.catch-of-the-day > *:nth-child(2) {
+.menu-of-the-day > *:nth-child(2) {
   -webkit-transform: translateX(-50%) rotateY(-14deg) translateX(50%);
           transform: translateX(-50%) rotateY(-14deg) translateX(50%);
   border-left: 0;
   border-right: 0;
   min-width: 300px;
 }
-.catch-of-the-day > *:last-child {
+.menu-of-the-day > *:last-child {
   -ms-flex-negative: 1;
       flex-shrink: 1;
   -ms-flex-preferred-size: 50%;
@@ -373,7 +373,7 @@ header.top h3:after {
   -webkit-transform: translateX(-50%) rotateY(10deg) translateX(50%) scale(1.08) translateX(24px);
           transform: translateX(-50%) rotateY(10deg) translateX(50%) scale(1.08) translateX(24px);
 }
-input#fold:not(:checked) ~ #main .catch-of-the-day > * {
+input#fold:not(:checked) ~ #main .menu-of-the-day > * {
   -webkit-transform: none;
           transform: none;
 }
@@ -635,19 +635,19 @@ button.twitter:after,
 input[type=submit].twitter:after {
   background: #2c8dd0;
 }
-.store-selector {
+.cafe-selector {
   background: #fff;
   max-width: 500px;
   margin: 50px auto;
   padding: 2rem;
   border: 2px solid #000;
 }
-.store-selector input,
-.store-selector button {
+.cafe-selector input,
+.cafe-selector button {
   width: 100%;
 }
-.store-selector input[type="text"],
-.store-selector button[type="text"] {
+.cafe-selector input[type="text"],
+.cafe-selector button[type="text"] {
   text-align: center;
   font-size: 3rem;
 }
