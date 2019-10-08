@@ -4,7 +4,27 @@ import Header from "./Header"
 import Order from "./Order"
 import Inventory from "./Inventory"
 
-class App extends Component {Inventory
+class App extends Component {
+
+  state = {
+    items: {},
+    order: {},
+  }
+
+  addItem = item => {
+    /*Note: we do not want to touch the existing state, instead make a copy of it  because it is cpnsidered to be a best practice
+    to never reach the state and modify it directly. This is what is called a mutation in javascript. Mutations can cause issues
+    performance of things updating out of order */
+    //taking a copy of a existing state
+    const items = {...this.state.items};
+    //add new item to the items variable
+    items[`item${Date.now()}`] = item;
+
+    //set the new items object to the state
+    this.setState({
+      items
+    });
+  };
   render() {
     return (
     <>
@@ -13,7 +33,7 @@ class App extends Component {Inventory
           <Header tagline="Daily Fresh Menu"/>
         </div>
         <Order/>
-        <Inventory/>
+        <Inventory addItem={this.addItem}/>
       </div>
     </>);
   }
