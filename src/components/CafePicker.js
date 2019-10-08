@@ -2,6 +2,18 @@ import React from "react";
 import { getCafeName } from "../helpers";
 class CafePicker extends React.Component {
 
+    myInput  = React.createRef();
+
+    goToCafe =  event => {
+        // Stopping the form from submitting
+        event.preventDefault();
+
+        // Grabbing the text from the input
+        console.log(this.myInput)
+        // change the url to the value entered in the input box
+        
+    }
+
     render() {
 
         /* So, if we want to return some multiline html using JSX we cannot just leave the return statement blank and
@@ -14,9 +26,9 @@ class CafePicker extends React.Component {
         tag or just empty tag like this --> <></> and you can render sibling elements in that. */
         return (
             <>
-            <form action="" className="cafe-selector">
+            <form action="" className="cafe-selector" onSubmit={this.goToCafe}>
                 <h2>Please Enter a Cafe name</h2>
-                <input type="text" required placeholder="Cafe Name" defaultValue={getCafeName()}/>
+                <input type="text" ref={this.myInput} required placeholder="Cafe Name" defaultValue={getCafeName()}/>
                 <button type="submit">Visit Cafe ▶</button>
             </form>
             </>
