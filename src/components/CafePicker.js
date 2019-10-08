@@ -9,8 +9,9 @@ class CafePicker extends React.Component {
         event.preventDefault();
 
         // Grabbing the text from the input
-        console.log(this.myInput)
+        const cafeName = this.myInput.current.value;
         // change the url to the value entered in the input box
+        this.props.history.push(`/cafe/${cafeName}`);
         
     }
 
