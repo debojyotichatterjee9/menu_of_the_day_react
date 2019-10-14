@@ -1,8 +1,9 @@
 import React from "react";
 import { Component } from "react";
-import Header from "./Header"
-import Order from "./Order"
-import Inventory from "./Inventory"
+import Header from "./Header";
+import Order from "./Order";
+import Inventory from "./Inventory";
+import sampleFishes from "../sample-fishes";
 
 class App extends Component {
 
@@ -24,7 +25,12 @@ class App extends Component {
     this.setState({
       items
     });
+
+    
   };
+      loadSampleMenu = () => {
+        this.setState({items: sampleFishes})
+      };
   render() {
     return (
     <>
@@ -33,7 +39,7 @@ class App extends Component {
           <Header tagline="Daily Fresh Menu"/>
         </div>
         <Order/>
-        <Inventory addItem={this.addItem}/>
+        <Inventory addItem={this.addItem} loadSampleMenu={this.loadSampleMenu}/>
       </div>
     </>);
   }
