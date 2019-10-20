@@ -29,6 +29,7 @@ class App extends Component {
   loadSampleMenu = () => {
     this.setState({ items: sampleMenu });
   };
+  // TODO: need to add the tips comment here for the props and state concepts later
   render() {
     return (
       <>
@@ -36,7 +37,7 @@ class App extends Component {
           <div className="menu">
             <Header tagline="Daily Fresh Menu" />
             <ul className="fishes">
-              {Object.keys(this.state.items).map(key => <Item key={key} />)}
+              {Object.keys(this.state.items).map(key => <Item key={key} details={this.state.items[key]}/>)}
             </ul>
           </div>
           <Order />
