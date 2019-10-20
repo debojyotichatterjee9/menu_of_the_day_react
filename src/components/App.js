@@ -36,7 +36,7 @@ class App extends Component {
         <div className="menu-of-the-day">
           <div className="menu">
             <Header tagline="Daily Fresh Menu" />
-            <ul className="fishes">
+            <ul className="items">
               {Object.keys(this.state.items).map(key => <Item key={key} details={this.state.items[key]}/>)}
             </ul>
           </div>

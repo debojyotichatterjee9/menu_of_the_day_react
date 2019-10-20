@@ -6,7 +6,7 @@ class Item extends React.Component {
         const {image, name, price, desc, status} = this.props.details; // using the ES6 destructuring we can create the variables to be able to use them easily
         return(
             <>
-                <li className="menu-fish">
+                <li className="menu-item">
                     <img src={image} alt={name}/>
                     <h3 className="fish-name">
                         {name}
