@@ -4,6 +4,7 @@ import { formatPrice } from "../helpers"
 class Item extends React.Component {
     render() {
         const {image, name, price, desc, status} = this.props.details; // using the ES6 destructuring we can create the variables to be able to use them easily
+        const isAvailable = status === 'available';
         return(
             <>
                 <li className="menu-item">
@@ -15,7 +16,7 @@ class Item extends React.Component {
                         </span>
                     </h3>
                     <p>{desc}</p>
-                    <button>Add to Cart</button>
+                    <button disabled={!isAvailable}>{isAvailable ? 'Add to Cart': 'Sold Out'}</button>
                 </li>
             </>
         )
