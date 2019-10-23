@@ -510,7 +510,7 @@ ul.order li span.count span {
   margin: 0;
   font-size: 1.8rem;
 }
-.menu-item .fish-name {
+.menu-item .item-name {
   margin: 0;
   display: -webkit-box;
   display: -ms-flexbox;

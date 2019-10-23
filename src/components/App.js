@@ -29,6 +29,15 @@ class App extends Component {
   loadSampleMenu = () => {
     this.setState({ items: sampleMenu });
   };
+
+  addToOrder = (key) => {
+    // 1. taking a copy of the state
+    const order = {...this.state.order};
+    // 2. adding or updating the order (if the order already exists)
+    order[key] = order[key] +1 || 1; // here it will check of the order[key] exists. it will add 1 to the value and if it doesn't exist then it will update the value as one
+    // 3. calling setState to update the state of our object
+    this.setState({order});
+  }
   // TODO: need to add the tips comment here for the props and state concepts later
   render() {
     return (
@@ -37,7 +46,8 @@ class App extends Component {
           <div className="menu">
             <Header tagline="Daily Fresh Menu" />
             <ul className="items">
-              {Object.keys(this.state.items).map(key => <Item key={key} details={this.state.items[key]}/>)}
+              {/* below we had to pass the key 2 times as the key was not accesible otherwise, so we had to pass it as a prop (something other than key)explicitly  */}
+              {Object.keys(this.state.items).map(key => <Item key={key} index={key} details={this.state.items[key]} addToOrder={this.addToOrder}/>)}
             </ul>
           </div>
           <Order />
