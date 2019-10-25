@@ -50,7 +50,7 @@ class App extends Component {
               {Object.keys(this.state.items).map(key => <Item key={key} index={key} details={this.state.items[key]} addToOrder={this.addToOrder}/>)}
             </ul>
           </div>
-          <Order />
+          <Order items={this.state.items} order={this.state.order}/> {/* passing the items and the order state via props*/}
           <Inventory
             addItem={this.addItem}
             loadSampleMenu={this.loadSampleMenu}
