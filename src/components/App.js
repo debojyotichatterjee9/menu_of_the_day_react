@@ -14,13 +14,29 @@ class App extends Component {
   };
 
   // here we implement React Life Cycle Hooks 
-  componentDidMount() { // invoked once immediately before the initial rendering occurs
+  componentWillMount() { // invoked once immediately before the initial rendering occurs
     const { params } = this.props.match
     this.ref = base.syncState(`${params.cafeId}/items`, 
     {
       context: this,
       state: 'items'
     });
+
+    // checking if there is any value in the local storage
+    const localStorageRef = localStorage.getItem(`order-${params.cafeId}`);
+
+    if (localStorageRef) {
+      this.setState({
+        order: JSON.parse(localStorageRef)
+      });
+    }
+  }
+
+  /*NOTE: THE SAME COMPONENTWILLUPDATE HOOK IS CREATED IN THE ORDER.JS FILE WHERE THE CAFEID IS GRABBED DIRECTLY FORM THE PROPS
+  OF THE ORDER COMPONENT. I HAVE STILL WRITTEN IT HERE TO MAINTAIN THE UNIFORMITY WITH THE ORIGINAL PROJECT */
+  componentWillUpdate(nextProps, nextState) {
+    const { params } = this.props.match
+    localStorage.setItem(`order-${params.cafeId}`, JSON.stringify(nextState.order));
   }
 
   componentWillUnmount() { // Called immediately before a component is destroyed.
@@ -65,7 +81,7 @@ class App extends Component {
               {Object.keys(this.state.items).map(key => <Item key={key} index={key} details={this.state.items[key]} addToOrder={this.addToOrder}/>)}
             </ul>
           </div>
-          <Order items={this.state.items} order={this.state.order}/> {/* passing the items and the order state via props*/}
+          <Order items={this.state.items} order={this.state.order} params={this.props.match.params}/> {/* passing the items and the order state via props*/}
           <Inventory
             addItem={this.addItem}
             loadSampleMenu={this.loadSampleMenu}
