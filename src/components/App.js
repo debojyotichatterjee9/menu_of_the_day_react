@@ -5,12 +5,27 @@ import Order from "./Order";
 import Inventory from "./Inventory";
 import sampleMenu from "../sample-menu";
 import Item from "./Item";
+import base from "../base"
 
 class App extends Component {
   state = {
     items: {},
     order: {}
   };
+
+  // here we implement React Life Cycle Hooks 
+  componentDidMount() { // invoked once immediately before the initial rendering occurs
+    const { params } = this.props.match
+    this.ref = base.syncState(`${params.cafeId}/items`, 
+    {
+      context: this,
+      state: 'items'
+    });
+  }
+
+  componentWillUnmount() { // Called immediately before a component is destroyed.
+    base.removeBinding(this.ref);
+  }
 
   addItem = item => {
     /*Note: we do not want to touch the existing state, instead make a copy of it  because it is cpnsidered to be a best practice
