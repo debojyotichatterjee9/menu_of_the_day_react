@@ -33,7 +33,7 @@ render () {
                 </select>
                 <textarea name="desc" ref={this.descRef} placeholder="Desc"></textarea>
                 <input name="image" ref={this.imageRef} type="text" placeholder="Image" />
-                <button type="submit">➕Add Item</button>
+                <button type="submit">➕ Add Item</button>
             </form>
         </>
     );

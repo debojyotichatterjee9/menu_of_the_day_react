@@ -12,6 +12,9 @@ class App extends Component {
     super();
     this.addItem = this.addItem.bind(this);
     this.updateItem = this.updateItem.bind(this);
+    this.removeItem = this.removeItem.bind(this);
+    this.addToOrder = this.addToOrder.bind(this);
+    this.removeFromOrder = this.removeFromOrder.bind(this);
   }
   state = {
     items: {},
@@ -70,6 +73,12 @@ updateItem = (key, updatedItem) => {
 
 }
 
+removeItem = key => {
+  const items = {...this.state.items};
+  items[key] = null;
+  this.setState({ items })
+}
+
   loadSampleMenu = () => {
     this.setState({ items: sampleMenu });
   };
@@ -81,6 +90,12 @@ updateItem = (key, updatedItem) => {
     order[key] = order[key] +1 || 1; // here it will check of the order[key] exists. it will add 1 to the value and if it doesn't exist then it will update the value as one
     // 3. calling setState to update the state of our object
     this.setState({order});
+  }
+
+  removeFromOrder = key => {
+    const order = {...this.state.order};
+    delete order[key];
+    this.setState({ order });
   }
   // TODO: need to add the tips comment here for the props and state concepts later
   render() {
@@ -94,9 +109,14 @@ updateItem = (key, updatedItem) => {
               {Object.keys(this.state.items).map(key => <Item key={key} index={key} details={this.state.items[key]} addToOrder={this.addToOrder}/>)}
             </ul>
           </div>
-          <Order items={this.state.items} order={this.state.order} params={this.props.match.params}/> {/* passing the items and the order state via props*/}
+          <Order 
+          items={this.state.items} 
+          order={this.state.order} 
+          params={this.props.match.params}
+          removeFromOrder={this.removeFromOrder}/> {/* passing the items and the order state via props*/}
           <Inventory
             addItem={this.addItem}
+            removeItem={this.removeItem}
             loadSampleMenu={this.loadSampleMenu}
             items={this.state.items}
             updateItem={this.updateItem}

@@ -6,15 +6,16 @@ class Order extends React.Component {
     renderOrder = key => {
         const item = this.props.items[key];
         const count = this.props.order[key];
+        const removeButton = <button onClick={() => this.props.removeFromOrder(key)}>❌</button>
 
         if (!item || item.status === 'unavailable') {
-            return <li key={key}>Sorry, {item ? item.name : 'item'} is no longer available.</li>
+            return <li key={key}>Sorry, {item ? item.name : 'item'} is no longer available.{removeButton}</li>
         }
 
         return (
-            <li key={key}>
+            <li key={key}>{removeButton}
             <span>{count} ✖ {item.name} 👉 </span>    
-                <span className="price">{formatPrice(count * item.price)}</span>   
+                <span className="price">{formatPrice(count * item.price)}</span>
             </li> 
         )
     }
