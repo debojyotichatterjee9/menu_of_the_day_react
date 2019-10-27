@@ -8,6 +8,11 @@ import Item from "./Item";
 import base from "../base"
 
 class App extends Component {
+  constructor() {
+    super();
+    this.addItem = this.addItem.bind(this);
+    this.updateItem = this.updateItem.bind(this);
+  }
   state = {
     items: {},
     order: {}
@@ -51,12 +56,20 @@ class App extends Component {
     const items = { ...this.state.items };
     //add new item to the items variable
     items[`item${Date.now()}`] = item;
-
     //set the new items object to the state
     this.setState({
       items
     });
   };
+
+updateItem = (key, updatedItem) => {
+  // updating the state
+ const items = {...this.state.items};
+ items[key] = updatedItem;
+ this.setState({ items });
+
+}
+
   loadSampleMenu = () => {
     this.setState({ items: sampleMenu });
   };
@@ -85,6 +98,8 @@ class App extends Component {
           <Inventory
             addItem={this.addItem}
             loadSampleMenu={this.loadSampleMenu}
+            items={this.state.items}
+            updateItem={this.updateItem}
           />
         </div>
       </>
