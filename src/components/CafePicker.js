@@ -1,6 +1,12 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { getCafeName } from "../helpers";
 class CafePicker extends React.Component {
+
+    static propTypes = {
+        history: PropTypes.object
+    };
+
 
     myInput  = React.createRef();
 

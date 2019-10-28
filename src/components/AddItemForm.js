@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 class AddItemForm extends React.Component {
 
@@ -7,6 +8,11 @@ class AddItemForm extends React.Component {
     statusRef = React.createRef();
     descRef = React.createRef();
     imageRef = React.createRef();
+
+    static propTypes ={
+        addItem: PropTypes.func
+    }
+
     createItem = event => {
         // stopping the form from submitting
         event.preventDefault();

@@ -6,6 +6,7 @@ import Inventory from "./Inventory";
 import sampleMenu from "../sample-menu";
 import Item from "./Item";
 import base from "../base"
+import PropTypes from "prop-types";
 
 class App extends Component {
   constructor() {
@@ -20,6 +21,10 @@ class App extends Component {
     items: {},
     order: {}
   };
+
+  static propTypes = {
+    match: PropTypes.object
+  }
 
   // here we implement React Life Cycle Hooks 
   componentWillMount() { // invoked once immediately before the initial rendering occurs

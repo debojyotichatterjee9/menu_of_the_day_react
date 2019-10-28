@@ -1,7 +1,17 @@
 import React from "react";
 import AddItemForm from "./AddItemForm";
+import PropTypes from "prop-types";
 
 class Inventory extends React.Component {
+
+    static propTypes = {
+        items: PropTypes.object,
+        updateItem: PropTypes.func,
+        removeItem: PropTypes.func,
+        loadSampleMenu: PropTypes.func,
+        addItem: PropTypes.func
+    }
+
     constructor () {
         super();
         this.renderInventory = this.renderInventory.bind(this);

@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 
 /* Note: The Header component below just has one render function and does not have any dynaminc data in it
@@ -50,5 +51,10 @@ const Header = ({ tagline }) => ( // here ES6 destructuring is used, "tagline" i
 //         );
 //     }
 // }
+
+// The propType is used to check if the type of prop which is passed is correct or not.(Basically, it checks the props they correct type and if it is mandatory)
+Header.propTypes = {
+    tagline: PropTypes.string.isRequired
+} 
 
 export default Header;
