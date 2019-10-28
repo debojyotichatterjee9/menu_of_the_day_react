@@ -6,7 +6,8 @@ const config = {
     authDomain: "menu-of-the-day-7d3f2.firebaseapp.com",
     databaseURL: "https://menu-of-the-day-7d3f2.firebaseio.com",
 }
-const app = firebase.initializeApp(config)
-const base = Rebase.createClass(app.database());
+const firebaseApp = firebase.initializeApp(config)
+const base = Rebase.createClass(firebaseApp.database());
 
+export { firebaseApp }
 export default base;

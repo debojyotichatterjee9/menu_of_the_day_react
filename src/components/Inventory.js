@@ -1,6 +1,9 @@
 import React from "react";
 import AddItemForm from "./AddItemForm";
+import Login from "./Login";
 import PropTypes from "prop-types";
+import firebase from "firebase";
+import base, { firebaseApp } from "../base"
 
 class Inventory extends React.Component {
 
@@ -45,7 +48,25 @@ class Inventory extends React.Component {
             </div>
         )
     }
+
+    authHandler = async (authData) => {
+        console.log(authData);
+        // look for the current cafe in the firebase database
+            const cafe = await base.fetch(this.props.cafeId, { context: this });
+        // claim if there is no owner
+        if (!cafe.owner) {
+            await base.post(`${this.props.cafeId}/owner`, { data: authData.user.uid })
+        }
+        // set the state of the inventory component to reflect the current user
+    }
+    
+    authenticate = provider => {
+        const authProvider = new firebase.auth[`${provider}AuthProvider`]();
+        firebaseApp.auth().signInWithPopup(authProvider).then(this.authHandler);
+    }
+
     render() {
+        return <Login authenticate={this.authenticate}/>
         return (
             <>
                 <div className="inventory">

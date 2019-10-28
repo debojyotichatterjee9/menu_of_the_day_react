@@ -125,6 +125,7 @@ removeItem = key => {
             loadSampleMenu={this.loadSampleMenu}
             items={this.state.items}
             updateItem={this.updateItem}
+            cafeId={this.props.match.params.cafeId}
           />
         </div>
       </>
