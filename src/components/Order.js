@@ -1,23 +1,47 @@
 import React from "react";
 import { formatPrice } from "../helpers"
+import { TransitionGroup, CSSTransition } from "react-transition-group";
 
 class Order extends React.Component {
-    
+
     renderOrder = key => {
         const item = this.props.items[key];
         const count = this.props.order[key];
         const removeButton = <button onClick={() => this.props.removeFromOrder(key)}>❌</button>
+        const transitionOptions = {
+            classNames: "order",
+            key,
+            timeout: {enter: 500, exit: 500},
+        };
 
         if (!item || item.status === 'unavailable') {
-            return <li key={key}>Sorry, {item ? item.name : 'item'} is no longer available.{removeButton}</li>
-        }
+            return (
+                <CSSTransition {...transitionOptions}>
+                    <li key={key}>Sorry, {item ? item.name : 'item'} is no longer available.{removeButton}</li>
+                </CSSTransition>
+            )
+        };
 
         return (
-            <li key={key}>{removeButton}
-            <span>{count} ✖ {item.name} 👉 </span>    
-                <span className="price">{formatPrice(count * item.price)}</span>
-            </li> 
-        )
+            <CSSTransition {...transitionOptions}>
+
+                <li key={key}>
+                    <span>
+                        
+                        
+                            <TransitionGroup component="span" className="count">
+                                <CSSTransition 
+                                classNames="count"
+                                key={count}
+                                timeout={{ enter: 250, exit: 250 }}>
+                                    <span>{count}</span>
+                                </CSSTransition>
+                            </TransitionGroup> ✖ {item.name} 👉 
+                        <span className="price">{formatPrice(count * item.price)}{removeButton}</span>
+                    </span>
+                </li>
+            </CSSTransition>
+        );
     }
 
     /*NOTE: WE CAN CREATE A LIFE CYCLE HOOK FOR THE ORDER HERE RATHER THAN CREATING ON THE App.js FILE FOR THE ORDER UPDATE 
@@ -45,9 +69,9 @@ class Order extends React.Component {
             <>
                 <div className="order-wrap">
                     <h2>Orders</h2>
-                    <ul className="order">
+                    <TransitionGroup component="ul" className="order">
                         {orderIds.map(this.renderOrder)}
-                    </ul>
+                    </TransitionGroup>
                     <div className="total">
                         Total:<strong>
                             {formatPrice(total)}
