@@ -48,16 +48,38 @@ class Inventory extends React.Component {
             </div>
         )
     }
+    // setting the state initially to null
+    state = {
+        uid: null,
+        owner: null,
+    }
+
+    /* below we are checking after every page load is the user is logged in or authenticated
+    then calling the authHandler and the passing the user data in it to do the checks reqd */
+    componentDidMount() {
+        firebase.auth().onAuthStateChanged(user => {
+            if (user) {
+                this.authHandler({user})
+            }
+        });
+    }
 
     authHandler = async (authData) => {
-        console.log(authData);
+        // console.log(authData);
         // look for the current cafe in the firebase database
             const cafe = await base.fetch(this.props.cafeId, { context: this });
         // claim if there is no owner
         if (!cafe.owner) {
             await base.post(`${this.props.cafeId}/owner`, { data: authData.user.uid })
+            await base.post(`${this.props.cafeId}/emailId`, { data: authData.user.email })
+            await base.post(`${this.props.cafeId}/name`, { data: authData.user.displayName })
+            await base.post(`${this.props.cafeId}/providerId`, { data: authData.credential.providerId })
         }
-        // set the state of the inventory component to reflect the current user
+        // setting the state of the inventory component to reflect the current user
+        this.setState({
+            uid: authData.user.uid,
+            owner: cafe.owner || authData.user.uid,
+        })
     }
     
     authenticate = provider => {
@@ -65,12 +87,36 @@ class Inventory extends React.Component {
         firebaseApp.auth().signInWithPopup(authProvider).then(this.authHandler);
     }
 
+    logout = async () => {
+        console.warn(`Logging Out!`);
+        await firebase.auth().signOut();
+        this.setState({uid: null});
+    }
+
     render() {
-        return <Login authenticate={this.authenticate}/>
+
+        const logoutButton = <button onClick={this.logout}>Log Out!</button>
+
+        // checking if user logged in
+        if (!this.state.uid) {
+            return <Login authenticate={this.authenticate}/>
+        }
+        // checking if the logged in user is the owner of the store
+        if (this.state.uid != this.state.owner) {
+            return (
+                <div>
+                    <p>Sorry, you are not the owner of this Cafe!!</p>
+                    {logoutButton}
+                </div>
+            )
+        }
+
+        // rendering the inventory after authentication check
         return (
             <>
                 <div className="inventory">
                     <h2>Inventory</h2>
+                    {logoutButton}
                     {Object.keys(this.props.items).map(this.renderInventory)}
                     <AddItemForm addItem={this.props.addItem} />
                     <button onClick={this.props.loadSampleMenu}>Load Sample Menu</button>
