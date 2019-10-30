@@ -65,7 +65,7 @@ class Inventory extends React.Component {
     }
 
     authHandler = async (authData) => {
-        // console.log(authData);
+        console.log(authData);
         // look for the current cafe in the firebase database
             const cafe = await base.fetch(this.props.cafeId, { context: this });
         // claim if there is no owner
@@ -73,7 +73,7 @@ class Inventory extends React.Component {
             await base.post(`${this.props.cafeId}/owner`, { data: authData.user.uid })
             await base.post(`${this.props.cafeId}/emailId`, { data: authData.user.email })
             await base.post(`${this.props.cafeId}/name`, { data: authData.user.displayName })
-            await base.post(`${this.props.cafeId}/providerId`, { data: authData.credential.providerId })
+            // await base.post(`${this.props.cafeId}/providerId`, { data: authData.user.providerData.providerId })
         }
         // setting the state of the inventory component to reflect the current user
         this.setState({
