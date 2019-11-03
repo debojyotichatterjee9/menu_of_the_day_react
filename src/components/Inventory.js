@@ -65,7 +65,7 @@ class Inventory extends React.Component {
     }
 
     authHandler = async (authData) => {
-        console.log(authData);
+        // console.log(authData);
         // look for the current cafe in the firebase database
             const cafe = await base.fetch(this.props.cafeId, { context: this });
         // claim if there is no owner
