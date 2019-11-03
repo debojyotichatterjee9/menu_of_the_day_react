@@ -1,0 +1,2 @@
+# Rewrite a path (no matter what the url is always render inde.html as this is a single page application)
+/* /index.html    200
